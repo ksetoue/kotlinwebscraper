@@ -15,8 +15,6 @@ import java.time.OffsetDateTime
 
 @Service
 class SkrapeData {
-//    val link = listOf("https://www.google.com", "https://www.github.com")
-
     fun search(links: List<String>): MutableList<NestedLink> {
         var allLinks = listOf<String>()
 
@@ -28,9 +26,9 @@ class SkrapeData {
                     scrape(link)
                 }
             }
-                allLinks = deferred.awaitAll().flatten()
-//                println("all links: $allLinks")
-            }
+
+            allLinks = deferred.awaitAll().flatten()
+        }
 
         allLinks.forEach { nestedLinks.add(NestedLink(id = null, content = it)) }
 

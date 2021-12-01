@@ -4,6 +4,4 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface NestedLinkRepository : CrudRepository<NestedLink, Long> {
-
-}
+interface NestedLinkRepository : CrudRepository<NestedLink, Long>

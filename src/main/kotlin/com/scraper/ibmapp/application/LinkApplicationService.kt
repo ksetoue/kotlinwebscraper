@@ -1,9 +1,8 @@
 package com.scraper.ibmapp.application
 
-import com.scraper.ibmapp.domain.dto.LinkCommand
+import com.scraper.ibmapp.domain.dto.LinkDTO
 import com.scraper.ibmapp.domain.model.Link
 import com.scraper.ibmapp.domain.model.LinkRepository
-import com.scraper.ibmapp.domain.model.NestedLink
 import com.scraper.ibmapp.domain.model.NestedLinkRepository
 import com.scraper.ibmapp.domain.model.common.ResourceNotFoundException
 import com.scraper.ibmapp.port.client.SkrapeData
@@ -18,14 +17,14 @@ class LinkApplicationService(
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
     
-    fun update(linkId: Long, linkCommand: LinkCommand): Link {
+    fun update(linkId: Long, linkDTO: LinkDTO): Link {
         logger.info("updating linkId: $linkId")
 
         return linkRepository.findById(linkId)
             .map {
                 val linkToUpdate = it.copy(
-                    title = linkCommand.title,
-                    source = linkCommand.source
+                    title = linkDTO.title,
+                    source = linkDTO.source
                 )
 
                 linkRepository.save(linkToUpdate)
@@ -33,7 +32,7 @@ class LinkApplicationService(
             .orElseThrow { ResourceNotFoundException("LinkId $linkId not found") }
     }
 
-    fun create(linkContent: LinkCommand): Link {
+    fun create(linkContent: LinkDTO): Link {
         logger.info("scraping data")
         val links = scraper.search(listOf(linkContent.source)).toSet()
 
@@ -45,5 +44,14 @@ class LinkApplicationService(
         )
 
         return linkRepository.save(newLink.copy(nestedLinks = links))
+    }
+
+    fun getAll(): MutableIterable<Link> {
+        return linkRepository.findAll()
+    }
+
+    fun getById(id: Long): Link? {
+        return linkRepository.findById(id)
+            .orElseThrow { ResourceNotFoundException("Link") }
     }
 }
