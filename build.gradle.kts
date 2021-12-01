@@ -28,6 +28,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
 	implementation("org.flywaydb:flyway-gradle-plugin:8.0.2")
+    implementation("it.skrape:skrapeit:1.1.5")
+    implementation("it.skrape:skrapeit-browser-fetcher:1.1.5")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
