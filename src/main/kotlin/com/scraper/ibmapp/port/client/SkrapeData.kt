@@ -1,5 +1,6 @@
 package com.scraper.ibmapp.port.client
 
+import com.scraper.ibmapp.domain.model.NestedLink
 import it.skrape.core.htmlDocument
 import it.skrape.fetcher.HttpFetcher
 import it.skrape.fetcher.response
@@ -13,13 +14,14 @@ import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
 @Service
-class SkrapeData(
-    val links: List<String>
-) {
+class SkrapeData {
 //    val link = listOf("https://www.google.com", "https://www.github.com")
 
-    fun search(partialHref: String): List<String> {
+    fun search(links: List<String>): MutableList<NestedLink> {
         var allLinks = listOf<String>()
+
+        val nestedLinks = mutableListOf<NestedLink>()
+
         runBlocking {
             val deferred = links.map { link  ->
                 async {
@@ -30,7 +32,9 @@ class SkrapeData(
 //                println("all links: $allLinks")
             }
 
-        return allLinks
+        allLinks.forEach { nestedLinks.add(NestedLink(id = null, content = it)) }
+
+        return nestedLinks
     }
 
     private fun scrape(urlToScrap: String) =

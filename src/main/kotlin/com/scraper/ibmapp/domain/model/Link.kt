@@ -17,5 +17,5 @@ data class Link(
     val createdAt: OffsetDateTime = OffsetDateTime.now(),
     
     @MappedCollection(idColumn = "source_id")
-    val nestedLinks: Set<NestedLink> = emptySet()
+    var nestedLinks: Set<NestedLink> = emptySet()
 )

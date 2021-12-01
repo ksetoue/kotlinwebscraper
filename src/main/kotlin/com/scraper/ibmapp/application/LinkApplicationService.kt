@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service
 @Service
 class LinkApplicationService(
     private val linkRepository: LinkRepository,
-    private val nestedLinkRepository: NestedLinkRepository
+    private val nestedLinkRepository: NestedLinkRepository,
+    private val scraper: SkrapeData
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
     
@@ -34,24 +35,15 @@ class LinkApplicationService(
 
     fun create(linkContent: LinkCommand): Link {
         logger.info("scraping data")
-        val links = SkrapeData(listOf(linkContent.source))
+        val links = scraper.search(listOf(linkContent.source)).toSet()
 
+        logger.info("creating a new link content")
         val newLink = Link(
             id = null,
             title = linkContent.title,
             source = linkContent.source
         )
-        links.let {
-            NestedLink(
-                id = null,
-                content = it.toString(),
-            )
-        }
 
-        logger.info("creating a new link content")
-
-
-
-        return linkRepository.save(newLink)
+        return linkRepository.save(newLink.copy(nestedLinks = links))
     }
 }
