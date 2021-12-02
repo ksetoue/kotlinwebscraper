@@ -20,9 +20,12 @@ class LinkApplicationService(
 
         return linkRepository.findById(linkId)
             .map {
+                val newLinksFound = scraper.search(listOf(linkDTO.source)).toSet()
+
                 val linkToUpdate = it.copy(
                     title = linkDTO.title,
-                    source = linkDTO.source
+                    source = linkDTO.source,
+                    nestedLinks = newLinksFound
                 )
 
                 linkRepository.save(linkToUpdate)

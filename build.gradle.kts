@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.backend.wasm.lower.excludeDeclarationsFromCodegen
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -30,8 +31,15 @@ dependencies {
 	implementation("org.flywaydb:flyway-gradle-plugin:8.0.2")
     implementation("it.skrape:skrapeit:1.1.5")
     implementation("it.skrape:skrapeit-browser-fetcher:1.1.5")
-	runtimeOnly("org.postgresql:postgresql")
+
+
+    runtimeOnly("org.postgresql:postgresql")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("br.com.six2six:fixture-factory:3.1.0")
+    testImplementation("org.assertj:assertj-core:3.11.1")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
+    testImplementation("com.thoughtworks.paranamer:paranamer:2.8")
 }
 
 dependencyManagement {
