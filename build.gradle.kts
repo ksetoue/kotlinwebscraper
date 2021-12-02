@@ -31,8 +31,10 @@ dependencies {
 	implementation("org.flywaydb:flyway-gradle-plugin:8.0.2")
     implementation("it.skrape:skrapeit:1.1.5")
     implementation("it.skrape:skrapeit-browser-fetcher:1.1.5")
-
-
+    implementation("org.springframework.security:spring-security-core:5.5.1")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    
+    
     runtimeOnly("org.postgresql:postgresql")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

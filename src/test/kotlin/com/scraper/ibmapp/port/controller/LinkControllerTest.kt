@@ -71,7 +71,7 @@ class LinkControllerTest(
     @Test
     fun `GET all must return a list of links when nothing goes wrong`() {
         val returnedLink = buildFixture<Link>("default")
-        `when`(linkApplicationServiceMock.getAll()).thenReturn(mutableListOf(returnedLink))
+        `when`(linkApplicationServiceMock.getAll()).thenReturn(listOf(returnedLink))
 
         mockMvc
             .perform(get("/link"))

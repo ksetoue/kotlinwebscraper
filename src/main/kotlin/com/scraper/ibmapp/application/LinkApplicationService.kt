@@ -6,6 +6,7 @@ import com.scraper.ibmapp.domain.model.LinkRepository
 import com.scraper.ibmapp.domain.model.common.ResourceNotFoundException
 import com.scraper.ibmapp.port.client.ScrapeDataClient
 import org.slf4j.LoggerFactory
+import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.regex
 import org.springframework.stereotype.Service
 
 @Service
@@ -47,12 +48,32 @@ class LinkApplicationService(
         return linkRepository.save(newLink.copy(nestedLinks = links))
     }
 
-    fun getAll(): MutableIterable<Link> {
-        return linkRepository.findAll()
+    fun getAll(): List<Link> {
+        val allSourceLinks = linkRepository.findAll()
+
+        val clearLinks = allSourceLinks.map { link ->
+            val nestedLinks = link.nestedLinks.map {
+                if (it.content.contains("http")) {
+                    it
+                } else {
+                    it.copy(content = link.source + it.content)
+                }
+            }
+
+            link.copy(nestedLinks = nestedLinks.toSet())
+        }
+
+        return clearLinks
     }
 
     fun getById(id: Long): Link? {
         return linkRepository.findById(id)
             .orElseThrow { ResourceNotFoundException("Link") }
+    }
+
+    fun delete(id: Long) {
+        val linkToDelete = linkRepository.findById(id)
+            .orElseThrow { ResourceNotFoundException("Link") }
+        linkRepository.delete(linkToDelete)
     }
 }

@@ -23,12 +23,18 @@ class LinkController(
     }
 
     @GetMapping
-    fun getAll(): ResponseEntity<MutableIterable<Link>> {
+    fun getAll(): ResponseEntity<List<Link>> {
         return ResponseEntity(linkApplicationService.getAll(), HttpStatus.OK)
     }
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long): ResponseEntity<Link> {
         return ResponseEntity(linkApplicationService.getById(id), HttpStatus.OK)
+    }
+
+    @DeleteMapping("/{id}")
+    fun deleteById(@PathVariable id: Long): ResponseEntity<String> {
+        linkApplicationService.delete(id)
+        return ResponseEntity(HttpStatus.OK)
     }
 }
