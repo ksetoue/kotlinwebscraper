@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
 @Service
-class SkrapeData {
+class ScrapeDataClient {
     fun search(links: List<String>): MutableList<NestedLink> {
         var allLinks = listOf<String>()
 

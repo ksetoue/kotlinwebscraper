@@ -1,7 +1,5 @@
 package com.scraper.ibmapp
 
-import com.scraper.ibmapp.application.LinkApplicationService
-import com.scraper.ibmapp.port.client.SkrapeData
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 

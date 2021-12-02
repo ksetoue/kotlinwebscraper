@@ -3,17 +3,15 @@ package com.scraper.ibmapp.application
 import com.scraper.ibmapp.domain.dto.LinkDTO
 import com.scraper.ibmapp.domain.model.Link
 import com.scraper.ibmapp.domain.model.LinkRepository
-import com.scraper.ibmapp.domain.model.NestedLinkRepository
 import com.scraper.ibmapp.domain.model.common.ResourceNotFoundException
-import com.scraper.ibmapp.port.client.SkrapeData
+import com.scraper.ibmapp.port.client.ScrapeDataClient
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 @Service
 class LinkApplicationService(
     private val linkRepository: LinkRepository,
-    private val nestedLinkRepository: NestedLinkRepository,
-    private val scraper: SkrapeData
+    private val scraper: ScrapeDataClient
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
     
