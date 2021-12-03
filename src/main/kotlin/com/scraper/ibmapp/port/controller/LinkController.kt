@@ -37,4 +37,16 @@ class LinkController(
         linkApplicationService.delete(id)
         return ResponseEntity(HttpStatus.OK)
     }
+
+    @DeleteMapping
+    fun deleteAll(): ResponseEntity<String> {
+        linkApplicationService.deleteAll()
+        return ResponseEntity(HttpStatus.OK)
+    }
+
+    @GetMapping("/find")
+    fun findByTitle(@RequestParam title: String): ResponseEntity<List<Link>> {
+        val foundLinks = linkApplicationService.findByTitle(title)
+        return ResponseEntity(foundLinks, HttpStatus.OK)
+    }
 }

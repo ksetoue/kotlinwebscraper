@@ -18,10 +18,11 @@ class LinkApplicationService(
     
     fun update(linkId: Long, linkDTO: LinkDTO): Link {
         logger.info("updating linkId: $linkId")
+        val validUrl = validUrl(linkDTO.source)
 
         return linkRepository.findById(linkId)
             .map {
-                val newLinksFound = scraper.search(listOf(linkDTO.source)).toSet()
+                val newLinksFound = scraper.search(listOf(validUrl)).toSet()
 
                 val linkToUpdate = it.copy(
                     title = linkDTO.title,
@@ -36,7 +37,9 @@ class LinkApplicationService(
 
     fun create(linkContent: LinkDTO): Link {
         logger.info("scraping data")
-        val links = scraper.search(listOf(linkContent.source)).toSet()
+        val validUrl = validUrl(linkContent.source)
+
+        val links = scraper.search(listOf(validUrl)).toSet()
 
         logger.info("creating a new link content")
         val newLink = Link(
@@ -72,8 +75,24 @@ class LinkApplicationService(
     }
 
     fun delete(id: Long) {
-        val linkToDelete = linkRepository.findById(id)
-            .orElseThrow { ResourceNotFoundException("Link") }
-        linkRepository.delete(linkToDelete)
+        linkRepository.deleteById(id)
+    }
+
+    fun deleteAll() {
+        linkRepository.deleteAll()
+    }
+
+    fun findByTitle(title: String): List<Link> {
+        val titleToFind = "%$title%"
+        return linkRepository.findByTitle(titleToFind)
+    }
+
+    private fun validUrl(url: String): String {
+        val hasHttp = url.matches("^(http|https)://".toRegex())
+        return if (hasHttp) {
+            url
+        } else {
+            "http://$url"
+        }
     }
 }
