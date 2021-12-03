@@ -9,6 +9,6 @@ ENV JAVA_OPTS=-Dspring.profiles.active=production
 RUN mkdir /app
 RUN chown 1000 /app
 USER 1000:1000
-COPY --chown=1000:1000 --from=build /home/gradle/src/build/libs/*.jar /app/data-manager.jar
+COPY --chown=1000:1000 --from=build /home/gradle/src/build/libs/*.jar /app/link-finder.jar
 RUN wget -O /app/dd-java-agent.jar 'https://dtdg.co/latest-java-tracer'
-ENTRYPOINT exec java -javaagent:/app/dd-java-agent.jar $JAVA_OPTS -jar /app/data-manager.jar
+ENTRYPOINT exec java -javaagent:/app/dd-java-agent.jar $JAVA_OPTS -jar /app/link-finder.jar
