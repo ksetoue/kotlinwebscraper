@@ -43,7 +43,8 @@ src
  |--- domain ==> objects and class definitions
     |--- dto ==> definition of data transfer objects
     |--- model ==> both classes and interfaces that represent concepts of the data models for this application 
-
+resources
+    |--- db.migration ==> migrations to populate postgres
 ````
 ### the webapp
 Not my strong suit, but I did my best :) 
