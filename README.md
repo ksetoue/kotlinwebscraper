@@ -22,7 +22,7 @@ The code must:
 For this project, I have used two different technologies and two different approaches: 
 
 - To handle transactions with the database, I have choosen to create a rest api that allows you to create, update, delete and find a link.
-- As a sample application that would use the api, inside the [front directory of this repo](https://github.com/ksetoue/kotlinwebscraper/tree/main/front), you can find a Vue app that provides a simple frontend to insert, update, delete and list the results of the api. 
+- As a sample application that would use the api. Inside the [front directory of this repo](https://github.com/ksetoue/kotlinwebscraper/tree/main/front), you can find a Vue app that provides a simple frontend to insert, update, delete and list the results of the api. 
 
 ### Architecture
 The system consists of two applications, as mentioned above, and the figure bellow attempts to describe how they both interact with each other. 
