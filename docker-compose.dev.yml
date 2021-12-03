@@ -18,7 +18,7 @@ services:
       context: ./front
       dockerfile: Dockerfile
     volumes:
-      - '.:/app'
+      - './front:/app'
       - '/app/node_modules'
     ports:
       - 8081:8081

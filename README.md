@@ -67,12 +67,21 @@ $ git clone https://github.com/ksetoue/kotlinwebscraper.git
 
 2. make run the following docker commands on your console or terminal:
 ```sh
-#to run locally
+#to run locally http://localhost:8081/
 $ docker-compose -f docker-compose.dev.yml up --build 
 # or to run in a production like environment
 $ docker-compose up --build 
 
 ```
+
+#### Accessing the application
+Go to 
+- development build: http://localhost:8081/
+- production build: http://localhost/ or http://localhost:80 on your web browser. You must be able to see the following screen:
+
+
+
+
 
 **P.S.:** remember that this application uses a docker-compose file, which means that it sets up a postgres container as database. 
 I recommend setting up the following environment variables in case you decide to run it in a managed database: 
