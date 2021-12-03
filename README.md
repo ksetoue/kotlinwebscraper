@@ -67,9 +67,10 @@ $ git clone https://github.com/ksetoue/kotlinwebscraper.git
 
 2. make run the following docker commands on your console or terminal:
 ```sh
-$ docker-compose -f docker-compose.dev.yml up --build #to run locally
-# or 
-$ docker-compose up --build #to run in a production like environment
+#to run locally
+$ docker-compose -f docker-compose.dev.yml up --build 
+# or to run in a production like environment
+$ docker-compose up --build 
 
 ```
 
