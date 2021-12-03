@@ -34,14 +34,17 @@ This springboot project was designed with restful api concepts and DDD principle
 You will notice that the application tries to apply some of the principles present inside the [reactive manifesto](https://www.reactivemanifesto.org/), specially regarding the concerns or responsiveness and resilience.
 
 The main layers in which this api is divided are: 
-- port: 
-  - controller: responsible for handling endpoint requests and returning the correct status code for each one
-  - client: abstract implementations for external libraries and clients
-- application: the main role is to handle business logic 
-- domain:
-  - dto: definition of data transfer objects
-  - model: both classes and interfaces that represent concepts of the data models for this application 
+```
+src
+ |--- port 
+    |---controller ==> responsible for handling endpoint requests and returning the correct status code for each one
+    |---client ==> abstract implementations for external libraries and clients
+ |--- application==> the main role is to handle business logic 
+ |--- domain ==> objects and class definitions
+    |--- dto ==> definition of data transfer objects
+    |--- model ==> both classes and interfaces that represent concepts of the data models for this application 
 
+````
 ### the webapp
 Not my strong suit, but I did my best :) 
 
