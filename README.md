@@ -79,9 +79,8 @@ Go to
 - development build: http://localhost:8081/
 - production build: http://localhost/ or http://localhost:80 on your web browser. You must be able to see the following screen:
 
-
-
-
+Here is how to use the app:
+![video](readme-resources/app.gif)
 
 **P.S.:** remember that this application uses a docker-compose file, which means that it sets up a postgres container as database. 
 I recommend setting up the following environment variables in case you decide to run it in a managed database: 
