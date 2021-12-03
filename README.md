@@ -24,6 +24,6 @@ For this project, I have used two different technologies and two different appro
 - As a sample application that would use the api, inside the [front directory of this repo](https://github.com/ksetoue/kotlinwebscraper/tree/main/front), you can find a Vue app that provides a simple frontend to insert, update, delete and list the results of the api. 
 
 ### Architecture
-The system consists of two applications, as mentioned above, and the figure bellow attempts to describe how they both interact with each other.
+The system consists of two applications, as mentioned above, and the figure bellow attempts to describe how they both interact with each other. 
 
-<img alt="project&#39;s architecture" src="https://imgur.com/a/aMs1lv7"/>
+![](readme-resources/architecture.jpg)
