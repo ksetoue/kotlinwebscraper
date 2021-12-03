@@ -16,11 +16,11 @@
       </div>
     </form>
 
-    <!-- <button class="badge badge-danger mr-2"
-      @click="deleteTutorial"
+    <button class="badge badge-danger mr-2"
+      @click="deleteLink"
     >
       Delete
-    </button> -->
+    </button>
 
     <button type="submit" class="badge badge-success"
       @click="updateLink"
@@ -70,16 +70,16 @@ export default {
         });
     },
 
-    // deleteTutorial() {
-    //   LinkDataService.delete(this.currentTutorial.id)
-    //     .then(response => {
-    //       console.log(response.data);
-    //       this.$router.push({ name: "tutorials" });
-    //     })
-    //     .catch(e => {
-    //       console.log(e);
-    //     });
-    // }
+    deleteLink() {
+      LinkDataService.delete(this.currentLink.id)
+        .then(response => {
+          console.log(response.data);
+          this.$router.push({ name: "links" });
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
   },
   mounted() {
     this.message = '';

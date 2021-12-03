@@ -14,20 +14,21 @@ class LinkDataService {
   }
 
   update(id, data) {
+    console.log(`${id} == ${data}`);
     return http.put(`/link/${id}`, data);
   }
 
-  // delete(id) {
-  //   return http.delete(`/tutorials/${id}`);
-  // }
+  delete(id) {
+    return http.delete(`/link/${id}`);
+  }
 
-  // deleteAll() {
-  //   return http.delete(`/tutorials`);
-  // }
+  deleteAll() {
+    return http.delete(`/link`);
+  }
 
-  // findByTitle(title) {
-  //   return http.get(`/tutorials?title=${title}`);
-  // }
+  findByTitle(title) {
+    return http.get(`/link/find?title=${title}`);
+  }
 }
 
 export default new LinkDataService();
